@@ -1,15 +1,23 @@
 [
   {
+    "category": "Electrónica",
+    "description": "Preguntas relacionadas con Electrónica."
+  },
+  {
+    "category": "Blockchain",
+    "description": "Preguntas relacionadas con Blockchain."
+  },
+  {
+    "category": "Hacking Ético",
+    "description": "Hacking Ético."
+  },
+  {
     "category": "Cultura",
     "description": "Preguntas relacionadas con arte, literatura, música y otras expresiones culturales."
   },
   {
     "category": "Deportes",
     "description": "Preguntas relacionadas con diversos deportes y eventos deportivos."
-  },
-  {
-    "category": "Arte",
-    "description": "Preguntas relacionadas con pintura, escultura, arquitectura y otras formas de expresión artística."
   },
   {
     "category": "Cine",
