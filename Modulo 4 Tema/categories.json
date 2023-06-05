@@ -20,14 +20,6 @@
     "description": "Preguntas relacionadas con diversos deportes y eventos deportivos."
   },
   {
-    "category": "Cine",
-    "description": "Preguntas relacionadas con películas, directores, actores y otros aspectos del cine."
-  },
-  {
-    "category": "Historia",
-    "description": "Preguntas relacionadas con eventos históricos, personajes y períodos importantes."
-  },
-  {
     "category": "Ciencia",
     "description": "Preguntas relacionadas con diferentes ramas de la ciencia, descubrimientos y avances científicos."
   }
