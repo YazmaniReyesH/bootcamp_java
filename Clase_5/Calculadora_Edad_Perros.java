@@ -2,7 +2,7 @@ package Clase_5;
 
 import java.util.Scanner;
 
-public class Main {
+public class Calculadora_Edad_Perros {
     public static void main(String[] args) {
         int edadPerro = 0;
         Scanner IngresaEdad = new Scanner(System.in);
