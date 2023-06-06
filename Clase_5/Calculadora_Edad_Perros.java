@@ -14,7 +14,7 @@ public class Calculadora_Edad_Perros {
             System.out.println("La edad debe ser un número positivo.");
         } else {
             edadPerro = edadHumana * 7;
+            System.out.println("La edad de tu perro en años de perro es: " + edadPerro);
         }
-        System.out.println("La edad de tu perro en años de perro es: " + edadPerro);
     }
 }
