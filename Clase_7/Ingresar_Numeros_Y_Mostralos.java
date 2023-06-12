@@ -7,44 +7,44 @@ public class Ingresar_Numeros_Y_Mostralos {
         int[] numeros = new int[5];
         Scanner ingresaNumero = new Scanner(System.in);
 
-        for (int contador = 0; contador < numeros.length; contador++) {
+        for (int i = 0; i < numeros.length; i++) {
             System.out.println("Ingresa un número: ");
             //int numero = ingresaNumero.nextInt();
-            numeros[contador] = ingresaNumero.nextInt();
+            numeros[i] = ingresaNumero.nextInt();
         }
 
-        /*int contador = 0;
+        /*int i = 0;
         do {
             System.out.println("Ingresa un número: ");
             int numero = ingresaNumero.nextInt();
-            numeros[contador] = numero;
-            contador++;
-        } while(contador < numeros.length);*/
+            numeros[i] = numero;
+            i++;
+        } while(i < numeros.length);*/
 
-        /*int contador = 0;
-        while (contador < numeros.length) {
+        /*int i = 0;
+        while (i < numeros.length) {
             System.out.println("Ingresa un número: ");
             int numero = ingresaNumero.nextInt();
-            numeros[contador] = numero;
-            contador++;
+            numeros[i] = numero;
+            i++;
         }*/
 
         System.out.println("Los números que ingresaste son: ");
 
-        for (int contador = 0; contador < numeros.length; contador++) {
-            System.out.println(numeros[contador]);
+        for (int i = 0; i < numeros.length; i++) {
+            System.out.println(numeros[i]);
         }
 
-        /*contador=0;
+        /*i=0;
         do {
-            System.out.println(numeros[contador]);
-            contador++;
-        } while(contador < numeros.length);*/
+            System.out.println(numeros[i]);
+            i++;
+        } while(i < numeros.length);*/
 
-        /*contador=0;
-        while (contador < numeros.length) {
-            System.out.println(numeros[contador]);
-            contador++;
+        /*i=0;
+        while (i < numeros.length) {
+            System.out.println(numeros[i]);
+            i++;
         }*/
     }
 }
