@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Ingresar_Numeros_Y_Mostralos {
     public static void main(String[] args) {
+        //Hacer un programa que permita al usuario ingresar 5 números y mostrarlos.
         int[] numeros = new int[5];
         Scanner ingresaNumero = new Scanner(System.in);
 
