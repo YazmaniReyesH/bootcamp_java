@@ -7,34 +7,34 @@ public class Cargar_Palabras_Y_Determinar_Repetidas {
         //que le pida al usuario 15 palabras y que muestre esas palabras e indique cuantas veces se repitió cada
         //una y ademas que diga como conclusion cual fue la palabra que mas se repitió.
 
-        Scanner teclado = new Scanner(System.in);
-        String[] array = new String[15];
+        Scanner IngresePalabras = new Scanner(System.in);
+        String[] palabras = new String[15];
 
-        for(int i = 0; i < array.length; i++){
+        for(int i = 0; i < palabras.length; i++){
             System.out.print("Ingrese una palabra ["+ i + "]: ");
-            array[i] = teclado.next();
+            palabras[i] = IngresePalabras.next();
         }
 
-        int[] contador = new int[array.length];
+        int[] contador = new int[palabras.length];
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 0; i < palabras.length; i++) {
             contador[i] = 1;
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i].equals(array[j])) {
+            for (int j = i + 1; j < palabras.length; j++) {
+                if (palabras[i].equals(palabras[j])) {
                     contador[i]++;
-                    array[j] = ""; // Marcar palabra repetida como vacía
+                    palabras[j] = ""; // Marcar palabra repetida como vacía para ir descartando palabras
                 }
             }
         }
 
         int maxFrecuencia = 0;
         String palabraMasRepetida = "";
-        for (int i = 0; i < array.length; i++) {
-            if (!array[i].equals("")) {
-                System.out.println("Palabra: " + array[i] + ", Repeticiones: " + contador[i]);
+        for (int i = 0; i < palabras.length; i++) {
+            if (!palabras[i].equals("")) {
+                System.out.println("Palabra: " + palabras[i] + ", Repeticiones: " + contador[i]);
                 if (contador[i] > maxFrecuencia) {
                     maxFrecuencia = contador[i];
-                    palabraMasRepetida = array[i];
+                    palabraMasRepetida = palabras[i];
                 }
             }
         }
