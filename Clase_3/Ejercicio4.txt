@@ -1,0 +1,45 @@
+Genera una trivia sobre un tema específico con la siguiente estructura:
+
+Tema: [Tema de la trivia]
+
+{
+   "nombre_trivia": "[Tema de la trivia]",
+   "reglas_juego": "El juego consta de siete preguntas sobre temas relacionados con [Tema de la trivia]. Cada pregunta tiene cuatro opciones de respuesta, y los jugadores deben seleccionar la respuesta correcta. Cada respuesta correcta suma un punto. Al final del juego, se suman los puntos obtenidos por cada jugador y el que tenga más puntos gana.",
+   "datos_adicionales": "Esta trivia está diseñada para poner a prueba tus conocimientos sobre [Tema de la trivia]. ¡Diviértete y buena suerte!",
+   "questions": [
+      {
+         "question": "¿Pregunta 1?",
+         "options": [
+            "Opción 1",
+            "Opción 2",
+            "Opción 3",
+            "Opción 4"
+         ],
+         "correctAnswer": [Índice de la respuesta correcta],
+         "explanation": "Explicación detallada de por qué la opción [Respuesta correcta] es la correcta."
+      },
+      {
+         "question": "¿Pregunta 2?",
+         "options": [
+            "Opción 1",
+            "Opción 2",
+            "Opción 3",
+            "Opción 4"
+         ],
+         "correctAnswer": [Índice de la respuesta correcta],
+         "explanation": "Explicación detallada de por qué la opción [Respuesta correcta] es la correcta."
+      },
+      {
+         "question": "¿Pregunta 3?",
+         "options": [
+            "Opción 1",
+            "Opción 2",
+            "Opción 3",
+            "Opción 4"
+         ],
+         "correctAnswer": [Índice de la respuesta correcta],
+         "explanation": "Explicación detallada de por qué la opción [Respuesta correcta] es la correcta."
+      }
+      // Agrega más preguntas siguiendo el mismo formato
+   ]
+}

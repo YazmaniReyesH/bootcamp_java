@@ -1,0 +1,41 @@
+{
+   "nombre_trivia":"Astronomía para principiantes",
+   "reglas_juego":"El juego consta de siete preguntas sobre temas relacionados con la astronomía.Cada pregunta tiene cuatro opciones de respuesta, y los jugadores deben seleccionar la respuesta correcta.Cada respuesta correcta suma un punto. Al final del juego, se suman los puntos obtenidos por cada jugador y el 
+  que tenga más puntos gana.",
+   "datos_adicionales":"Esta trivia está diseñada para principiantes en astronomía, pero puede ser disfrutada por cualquier persona interesada en el tema.",
+   "questions":[
+      {
+         "question":"¿Cuál es el planeta más grande del sistema solar?",
+         "options":[
+            "Marte",
+            "Venus",
+            "Júpiter",
+            "Saturno"
+         ],
+         "correctAnswer":2,
+         "explanation":"La respuesta correcta es Júpiter. Es el planeta más grande y masivo de nuestro sistema solar, con una atmósfera compuesta principalmente de hidrógeno y helio."
+      },
+      {
+         "question":"¿Cuál es la estrella más cercana a la Tierra?",
+         "options":[
+            "Proxima Centauri",
+            "Sol",
+            "Sirio",
+            "Alfa Centauri"
+         ],
+         "correctAnswer":1,
+         "explanation":"La respuesta correcta es el Sol. Es una estrella enana naranja ubicada en el sistema solar, y es la estrella más cercana al sistema solar"
+      },
+      {
+         "question":"¿Cuál es la galaxia más cercana a la Vía Láctea?",
+         "options":[
+            "Cigarro",
+            "Sombrero",
+            "Remolino",
+            "Andrómeda"
+         ],
+         "correctAnswer":3,
+         "explanation":"La respuesta correcta es Andrómeda. Es una galaxia espiral que se encuentra a unos 2.5 millones de años luz de la Tierra, y es la galaxia más cercana a nuestra Vía Láctea."
+      }
+   ]
+}
