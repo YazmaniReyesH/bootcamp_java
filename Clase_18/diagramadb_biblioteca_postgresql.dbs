@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="DemoPostgreSQL" id="Project-21f7" database="PostgreSQL" >
+	<schema name="demopostgresql" >
+		<table name="autor" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="nombre" type="varchar" length="100" jt="12" />
+			<column name="apellido" type="varchar" length="100" jt="12" />
+			<index name="pk_autor" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_autor_libros" to_schema="demopostgresql" to_table="libros" >
+				<fk_column name="id" pk="autor_id" />
+			</fk>
+		</table>
+		<table name="devoluciones" prior="deviluciones" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="prestamos_id" prior="presatmos_id" type="integer" jt="4" />
+			<index name="pk_devoluciones" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_devoluciones_presatmos_id" unique="UNIQUE_KEY" >
+				<column name="prestamos_id" />
+			</index>
+		</table>
+		<table name="libros" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="autor_id" type="integer" jt="4" />
+			<column name="titulo" type="varchar" length="100" jt="12" />
+			<column name="paginas" type="integer" jt="4" />
+			<column name="editorial" type="varchar" length="100" jt="12" />
+			<column name="edicion" type="varchar" length="100" jt="12" />
+			<index name="pk_libros" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_libros_autor_id" unique="UNIQUE_KEY" >
+				<column name="autor_id" />
+			</index>
+			<fk name="fk_libros_prestamos" to_schema="demopostgresql" to_table="prestamos" >
+				<fk_column name="id" pk="libro_id" />
+			</fk>
+		</table>
+		<table name="prestamos" prior="tbl" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="usuario_id" type="integer" jt="4" />
+			<column name="libro_id" type="integer" jt="4" />
+			<column name="fecha" type="date" jt="91" />
+			<index name="pk_prestamos" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unq_prestamos_usuario_id" unique="UNIQUE_KEY" >
+				<column name="usuario_id" />
+			</index>
+			<index name="unq_prestamos_libro_id" unique="UNIQUE_KEY" >
+				<column name="libro_id" />
+			</index>
+			<fk name="fk_prestamos_devoluciones" to_schema="demopostgresql" to_table="devoluciones" >
+				<fk_column name="id" pk="prestamos_id" />
+			</fk>
+		</table>
+		<table name="usuarios_registrados" prior="usuarios registrados" >
+			<column name="id" type="integer" jt="4" mandatory="y" />
+			<column name="nombre" type="varchar" length="100" jt="12" />
+			<column name="apellido" type="varchar" length="100" jt="12" />
+			<column name="direccion" type="varchar" length="100" jt="12" />
+			<column name="telefono" type="varchar" length="100" jt="12" />
+			<index name="pk_usuarios_registrados" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<fk name="fk_usuarios_registrados_prestamos" to_schema="demopostgresql" to_table="prestamos" >
+				<fk_column name="id" pk="usuario_id" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-12cd" joined_routing="y" show_relation="columns" >
+		<entity schema="demopostgresql" name="autor" color="C1D8EE" x="48" y="240" />
+		<entity schema="demopostgresql" name="devoluciones" color="C1D8EE" x="736" y="128" />
+		<entity schema="demopostgresql" name="libros" color="C1D8EE" x="304" y="240" />
+		<entity schema="demopostgresql" name="prestamos" color="C1D8EE" x="480" y="48" />
+		<entity schema="demopostgresql" name="usuarios_registrados" color="C1D8EE" x="48" y="48" />
+		<callout x="1072" y="768" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+		<script name="SQL_Editor_001" id="Editor-bbe" language="SQL" >
+			<string><![CDATA[CREATE SCHEMA IF NOT EXISTS demopostgresql;
+
+CREATE  TABLE demopostgresql.devoluciones ( 
+	id                   integer  NOT NULL  ,
+	prestamos_id         integer    ,
+	CONSTRAINT pk_devoluciones PRIMARY KEY ( id ),
+	CONSTRAINT unq_devoluciones_presatmos_id UNIQUE ( prestamos_id ) 
+ );
+
+CREATE  TABLE demopostgresql.prestamos ( 
+	id                   integer  NOT NULL  ,
+	usuario_id           integer    ,
+	libro_id             integer    ,
+	fecha                date    ,
+	CONSTRAINT pk_prestamos PRIMARY KEY ( id ),
+	CONSTRAINT unq_prestamos_usuario_id UNIQUE ( usuario_id ) ,
+	CONSTRAINT unq_prestamos_libro_id UNIQUE ( libro_id ) 
+ );
+
+CREATE  TABLE demopostgresql.usuarios_registrados ( 
+	id                   integer  NOT NULL  ,
+	nombre               varchar(100)    ,
+	apellido             varchar(100)    ,
+	direccion            varchar(100)    ,
+	telefono             varchar(100)    ,
+	CONSTRAINT pk_usuarios_registrados PRIMARY KEY ( id )
+ );
+
+CREATE  TABLE demopostgresql.libros ( 
+	id                   integer  NOT NULL  ,
+	autor_id             integer    ,
+	titulo               varchar(100)    ,
+	paginas              integer    ,
+	editorial            varchar(100)    ,
+	edicion              varchar(100)    ,
+	CONSTRAINT pk_libros PRIMARY KEY ( id ),
+	CONSTRAINT unq_libros_autor_id UNIQUE ( autor_id ) 
+ );
+
+CREATE  TABLE demopostgresql.autor ( 
+	id                   integer  NOT NULL  ,
+	nombre               varchar(100)    ,
+	apellido             varchar(100)    ,
+	CONSTRAINT pk_autor PRIMARY KEY ( id )
+ );
+
+ALTER TABLE demopostgresql.autor ADD CONSTRAINT fk_autor_libros FOREIGN KEY ( id ) REFERENCES demopostgresql.libros( autor_id );
+
+ALTER TABLE demopostgresql.libros ADD CONSTRAINT fk_libros_prestamos FOREIGN KEY ( id ) REFERENCES demopostgresql.prestamos( libro_id );
+
+ALTER TABLE demopostgresql.prestamos ADD CONSTRAINT fk_prestamos_devoluciones FOREIGN KEY ( id ) REFERENCES demopostgresql.devoluciones( prestamos_id );
+
+ALTER TABLE demopostgresql.usuarios_registrados ADD CONSTRAINT fk_usuarios_registrados_prestamos FOREIGN KEY ( id ) REFERENCES demopostgresql.prestamos( usuario_id );
+]]></string>
+		</script>
+	</layout>
+</project>

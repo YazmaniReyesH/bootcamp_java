@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Demo" id="Project-17ca" database="SqlServer" >
+	<comment><![CDATA[Demo]]></comment>
+	<schema name="dbo" catalogname="Demo" >
+		<table name="Autor" prior="Tbl_0" >
+			<column name="Id" type="int" jt="4" mandatory="y" />
+			<column name="Nombre" type="varchar" length="100" jt="12" />
+			<column name="Apellido" type="varchar" length="100" jt="12" />
+			<index name="pk_Autor" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<fk name="fk_Autor_Libros" to_schema="Demo.dbo" to_table="Libros" >
+				<fk_column name="Id" pk="Autor_ID" />
+			</fk>
+		</table>
+		<table name="Devoluciones" prior="Tbl_0" >
+			<column name="Id" type="int" jt="4" mandatory="y" />
+			<column name="Prestamos_ID" type="int" jt="4" />
+			<index name="pk_Devoluciones" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="unq_Devoluciones_Prestamos_ID" unique="UNIQUE_KEY" >
+				<column name="Prestamos_ID" />
+			</index>
+		</table>
+		<table name="Libros" prior="Tbl_0" >
+			<column name="Id" type="int" jt="4" mandatory="y" />
+			<column name="Autor_ID" type="int" length="100" jt="4" />
+			<column name="Titulo" type="varchar" length="100" jt="12" />
+			<column name="Paginas" type="int" jt="4" />
+			<column name="Editorial" type="varchar" length="100" jt="12" />
+			<column name="Edicion" type="varchar" length="100" jt="12" />
+			<index name="pk_Libros" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="unq_Libros_Autor_ID" unique="UNIQUE_KEY" >
+				<column name="Autor_ID" />
+			</index>
+			<fk name="fk_Libros_Prestamos" to_schema="Demo.dbo" to_table="Prestamos" >
+				<fk_column name="Id" pk="Libro_ID" />
+			</fk>
+		</table>
+		<table name="Prestamos" prior="Tbl_0" >
+			<column name="Id" type="int" jt="4" mandatory="y" />
+			<column name="Usuario_ID" type="int" jt="4" />
+			<column name="Libro_ID" type="int" jt="4" />
+			<column name="Fecha" type="date" jt="91" />
+			<index name="pk_Prestamos" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="unq_Prestamos_Usuario_ID" unique="UNIQUE_KEY" >
+				<column name="Usuario_ID" />
+			</index>
+			<index name="unq_Prestamos_Libro_ID" unique="UNIQUE_KEY" >
+				<column name="Libro_ID" />
+			</index>
+			<fk name="fk_Prestamos_Devoluciones" to_schema="Demo.dbo" to_table="Devoluciones" >
+				<fk_column name="Id" pk="Prestamos_ID" />
+			</fk>
+		</table>
+		<table name="Usuarios Registrados" prior="Tbl_0" >
+			<column name="Id" type="int" jt="4" mandatory="y" />
+			<column name="Nombre" type="varchar" length="100" jt="12" />
+			<column name="Apellido" type="varchar" length="100" jt="12" />
+			<column name="Direccion" type="varchar" length="100" jt="12" />
+			<column name="Telefono" type="int" jt="4" />
+			<index name="pk_Usuarios Registrados" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<fk name="fk_Usuarios Registrados_Prestamos" to_schema="Demo.dbo" to_table="Prestamos" >
+				<fk_column name="Id" pk="Usuario_ID" />
+			</fk>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout-3b1" joined_routing="y" show_relation="columns" >
+		<entity schema="Demo.dbo" name="Autor" color="C1D8EE" x="48" y="208" />
+		<entity schema="Demo.dbo" name="Devoluciones" color="C1D8EE" x="752" y="80" />
+		<entity schema="Demo.dbo" name="Libros" color="C1D8EE" x="272" y="208" />
+		<entity schema="Demo.dbo" name="Prestamos" color="C1D8EE" x="496" y="64" />
+		<entity schema="Demo.dbo" name="Usuarios Registrados" color="C1D8EE" x="48" y="48" />
+		<callout x="848" y="672" pointer="Round" >
+			<comment><![CDATA[This is a layout - a diagram with tools.
+- Create new entities by right-clicking the layout. 
+- Double-click entity headers to edit.
+- For a better understanding of the schema, create multiple layouts.
+- Deploy the model into the database by converting it first to the physical design.]]></comment>
+		</callout>
+		<script name="SQL_Editor" id="Editor-735" language="SQL" >
+			<string><![CDATA[IF NOT EXISTS(SELECT * FROM sys.databases WHERE name='Demo')
+BEGIN
+CREATE DATABASE [Demo]
+END;
+GO
+
+USE [Demo];
+GO
+
+CREATE  TABLE Demo.dbo.Devoluciones ( 
+	Id                   int      NOT NULL,
+	Prestamos_ID         int      NULL,
+	CONSTRAINT pk_Devoluciones PRIMARY KEY  ( Id ) ,
+	CONSTRAINT unq_Devoluciones_Prestamos_ID UNIQUE ( Prestamos_ID ) 
+ );
+GO
+
+CREATE  TABLE Demo.dbo.Prestamos ( 
+	Id                   int      NOT NULL,
+	Usuario_ID           int      NULL,
+	Libro_ID             int      NULL,
+	Fecha                date      NULL,
+	CONSTRAINT pk_Prestamos PRIMARY KEY  ( Id ) ,
+	CONSTRAINT unq_Prestamos_Usuario_ID UNIQUE ( Usuario_ID ) ,
+	CONSTRAINT unq_Prestamos_Libro_ID UNIQUE ( Libro_ID ) 
+ );
+GO
+
+CREATE  TABLE Demo.dbo.[Usuarios Registrados] ( 
+	Id                   int      NOT NULL,
+	Nombre               varchar(100)      NULL,
+	Apellido             varchar(100)      NULL,
+	Direccion            varchar(100)      NULL,
+	Telefono             int      NULL,
+	CONSTRAINT [pk_Usuarios Registrados] PRIMARY KEY  ( Id ) 
+ );
+GO
+
+CREATE  TABLE Demo.dbo.Libros ( 
+	Id                   int      NOT NULL,
+	Autor_ID             int      NULL,
+	Titulo               varchar(100)      NULL,
+	Paginas              int      NULL,
+	Editorial            varchar(100)      NULL,
+	Edicion              varchar(100)      NULL,
+	CONSTRAINT pk_Libros PRIMARY KEY  ( Id ) ,
+	CONSTRAINT unq_Libros_Autor_ID UNIQUE ( Autor_ID ) 
+ );
+GO
+
+CREATE  TABLE Demo.dbo.Autor ( 
+	Id                   int      NOT NULL,
+	Nombre               varchar(100)      NULL,
+	Apellido             varchar(100)      NULL,
+	CONSTRAINT pk_Autor PRIMARY KEY  ( Id ) 
+ );
+GO
+
+ALTER TABLE Demo.dbo.Autor ADD CONSTRAINT fk_Autor_Libros FOREIGN KEY ( Id ) REFERENCES Demo.dbo.Libros( Autor_ID );
+GO
+
+ALTER TABLE Demo.dbo.Libros ADD CONSTRAINT fk_Libros_Prestamos FOREIGN KEY ( Id ) REFERENCES Demo.dbo.Prestamos( Libro_ID );
+GO
+
+ALTER TABLE Demo.dbo.Prestamos ADD CONSTRAINT fk_Prestamos_Devoluciones FOREIGN KEY ( Id ) REFERENCES Demo.dbo.Devoluciones( Prestamos_ID );
+GO
+
+ALTER TABLE Demo.dbo.[Usuarios Registrados] ADD CONSTRAINT [fk_Usuarios Registrados_Prestamos] FOREIGN KEY ( Id ) REFERENCES Demo.dbo.Prestamos( Usuario_ID );
+GO
+]]></string>
+		</script>
+	</layout>
+</project>
